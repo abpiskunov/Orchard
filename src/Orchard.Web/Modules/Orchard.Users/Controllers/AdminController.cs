@@ -19,6 +19,7 @@ using Orchard.Users.Models;
 using Orchard.Users.Services;
 using Orchard.Users.ViewModels;
 using Orchard.Utility.Extensions;
+using Permissions = Orchard.Users.Permissions;
 
 namespace Orchard.Users.Controllers {
     [ValidateInput(false)]
