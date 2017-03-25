@@ -111,7 +111,8 @@ namespace Orchard.ContentManagement {
 
             Handlers.Invoke(handler => handler.Activated(context2), Logger);
 
-            var context3 = new InitializingContentContext {
+            var context3 = new InitializingContentContext
+            {
                 ContentType = context2.ContentType,
                 ContentItem = context2.ContentItem,
             };
@@ -127,35 +128,42 @@ namespace Orchard.ContentManagement {
             return Get(id, VersionOptions.Published);
         }
 
-        public virtual ContentItem Get(int id, VersionOptions options) {
+        public virtual ContentItem Get(int id, VersionOptions options)
+        {
+
             return Get(id, options, QueryHints.Empty);
         }
 
         public virtual ContentItem Get(int id, VersionOptions options, QueryHints hints) {
-            var session = _contentManagerSession();
-            ContentItem contentItem;
+var session = _contentManagerSession();
+ContentItem contentItem;
 
-            ContentItemVersionRecord versionRecord = null;
+ContentItemVersionRecord versionRecord = null;
 
-            // obtain the root records based on version options
-            if (options.VersionRecordId != 0) {
-                // short-circuit if item held in session
-                if (session.RecallVersionRecordId(options.VersionRecordId, out contentItem)) {
-                    return contentItem;
-                }
+// obtain the root records based on version options
+if (options.VersionRecordId != 0)
+{
+// short-circuit if item held in session
+if (session.RecallVersionRecordId(options.VersionRecordId, out contentItem))
+{
+    return contentItem;
+}
 
-                versionRecord = _contentItemVersionRepository.Get(options.VersionRecordId);
-            }
-            else if (options.VersionNumber != 0) {
-                // short-circuit if item held in session
-                if (session.RecallVersionNumber(id, options.VersionNumber, out contentItem)) {
-                    return contentItem;
-                }
+versionRecord = _contentItemVersionRepository.Get(options.VersionRecordId);
+}
+else if (options.VersionNumber != 0)
+{
+// short-circuit if item held in session
+if (session.RecallVersionNumber(id, options.VersionNumber, out contentItem))
+{
+    return contentItem;
+}
 
-                versionRecord = _contentItemVersionRepository.Get(x => x.ContentItemRecord.Id == id && x.Number == options.VersionNumber);
-            }
-            else if (session.RecallContentRecordId(id, out contentItem)) {
-                // try to reload a previously loaded published content item
+versionRecord = _contentItemVersionRepository.Get(x => x.ContentItemRecord.Id == id && x.Number == options.VersionNumber);
+}
+else if (session.RecallContentRecordId(id, out contentItem))
+{
+// try to reload a previously loaded published content item
 
                 if (options.IsPublished) {
                     return contentItem;
