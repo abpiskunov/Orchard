@@ -1,0 +1,58 @@
+﻿
+.centered {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.float-left {
+    float: left;
+}
+
+.float-right {
+    float: right;
+}
+
+.hidden {
+    
+    visibility: hidden;
+}
+
+.contextLink {
+    font-size: x-small;
+    text-decoration: none;
+    color: #09969D;
+}
+
+.contextCommandLink:hover {
+    font-size: small;
+    color: #ec8b47;
+}
+
+.contextCommandLink {
+    font-size: small;
+    color: #595959;
+}
+
+.helpContentPanel {
+    font-size: xx-small;
+}
+
+.importantData {
+    font-weight: bold;
+}
+
+.errorLink {
+    color: white;
+    font-weight: bold;
+    font-size: x-small;
+}
+
+.controlPropertyStateFailed {
+color: white;
+        background-color: #aa2d10;
+font-size: x-small;
+border-bottom-color: white;
+border-width: 1px;
+border-style: none;
+}
